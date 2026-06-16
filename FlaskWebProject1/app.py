@@ -71,7 +71,7 @@ def data_route():
         fruit=getData(),
         animal=getData2(),
         color=getData3()
-    )
+  )
 
 # --- Step 7: MySQL Time Endpoint ---
 @app.route("/mysql-time")
@@ -92,5 +92,8 @@ def mysql_time():
     except Exception as e:
         return jsonify(error=str(e), status="MySQL not reachable "), 500
 
+@app.route("/version")
+def version():
+    return jsonify({"version": "1.0"})
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
