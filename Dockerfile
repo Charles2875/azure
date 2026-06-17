@@ -9,6 +9,6 @@ RUN pip install mysql-connector-python
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 8000
 
 CMD ["python", "FlaskWebProject1/app.py"]

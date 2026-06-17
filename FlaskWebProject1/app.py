@@ -6,6 +6,9 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+INSTANCE = os.environ.get("INSTANCE_NAME", "flask-app")
+VERSION  = os.environ.get("APP_VERSION", "1.0")
+
 # --- Logic from code1.py ---
 def add(a, b):
     return a + b
@@ -51,11 +54,10 @@ def home():
         <li><a href="/add/5/3">Add Numbers</a></li>
         <li><a href="/data">Random Data</a></li>
         <li><a href="/mysql-time">MySQL Time</a></li>
+        <li><a href="/version">Version</a></li>
     </ul>
     """
-@app.route("/version")
-def version():
-    return jsonify({"version": "1.0"})
+
 
 @app.route("/hello/<name>")
 def hello(name):
@@ -92,8 +94,10 @@ def mysql_time():
     except Exception as e:
         return jsonify(error=str(e), status="MySQL not reachable "), 500
 
-@app.route("/version")
-def version():
-    return jsonify({"version": "1.0"})
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+
+@app.route("/version")
+def version():
+    return jsonify(instance=INSTANCE, version=VERSION)

@@ -40,6 +40,10 @@ jobs:
           script: |
             cd ~/Devops
             git pull origin main
-            docker compose pull
-            docker compose down
-            docker compose up -d
+            export APP1_IMAGE_TAG=${{ github.sha }}
+            export APP2_IMAGE_TAG=latest
+            docker compose pull flask-app-1
+            docker compose up -d --no-deps flask-app-1
+            echo " flask-app-1 updated to ${{ github.sha }}"
+            echo " flask-app-2 unchanged (still :latest)"
+            docker compose ps
