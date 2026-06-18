@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -32,18 +31,17 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/devops-flask-app:latest
 
       - name: Deploy to Azure VM
-  uses: appleboy/ssh-action@v1.0.3
-  with:
-    host: ${{ secrets.AZURE_VM_IP }}
-    username: ${{ secrets.AZURE_VM_USER }}
-    key: ${{ secrets.AZURE_SSH_KEY }}
-    script: |
-      cd ~/Devops
-      git pull origin main
-      export APP1_IMAGE_TAG=${{ github.sha }}
-      export APP2_IMAGE_TAG=latest
-      docker compose pull flask-app-1
-      docker compose up -d --no-deps flask-app-1
-      echo "flask-app-1 updated to ${{ github.sha }}"
-      docker compose ps
-            
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AZURE_VM_IP }}
+          username: ${{ secrets.AZURE_VM_USER }}
+          key: ${{ secrets.AZURE_SSH_KEY }}
+          script: |
+            cd ~/Devops
+            git pull origin main
+            export APP1_IMAGE_TAG=${{ github.sha }}
+            export APP2_IMAGE_TAG=latest
+            docker compose pull flask-app-1
+            docker compose up -d --no-deps flask-app-1
+            echo "flask-app-1 updated to ${{ github.sha }}"
+            docker compose ps
