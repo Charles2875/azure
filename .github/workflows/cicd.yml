@@ -34,15 +34,17 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.AZURE_VM_IP }}
-          username: azureuser
+          username: charles   # or azureuser if you prefer
           key: ${{ secrets.AZURE_SSH_KEY }}
           script: |
-            cd ~/Devops
-            
+            cd ~/azure
             git pull origin main
+
             export APP1_IMAGE_TAG=${{ github.sha }}
             export APP2_IMAGE_TAG=latest
+
             docker compose pull flask-app-1
             docker compose up -d --no-deps flask-app-1
+
             echo "flask-app-1 updated to ${{ github.sha }}"
             docker compose ps
