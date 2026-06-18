@@ -22,7 +22,7 @@ def home():
     <h1>Docker Compose Lab</h1>
 
     <h3>Student Information</h3>
-    <p><b>Name:</b> arunkumar </p>
+    <p><b>Name:</b> charles </p>
     <p><b>Class:</b> DevOps</p>
 
     <h3>System Information</h3>
