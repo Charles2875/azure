@@ -38,6 +38,7 @@ jobs:
           key: ${{ secrets.AZURE_SSH_KEY }}
           script: |
             cd ~/Devops
+            
             git pull origin main
             export APP1_IMAGE_TAG=${{ github.sha }}
             export APP2_IMAGE_TAG=latest
