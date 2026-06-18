@@ -47,3 +47,4 @@ jobs:
             echo " flask-app-1 updated to ${{ github.sha }}"
             echo " flask-app-2 unchanged (still :latest)"
             docker compose ps
+            
