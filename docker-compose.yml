@@ -1,7 +1,6 @@
 services:
- 
   flask-app-1:
-    image: arunkumar2202/devops-flask-app:${APP1_IMAGE_TAG:-latest}
+    image: charles2875/azure:latest
     container_name: flask-app-1
     restart: always
     ports:
@@ -9,9 +8,9 @@ services:
     environment:
       INSTANCE_NAME: flask-app-1
       APP_VERSION: "1.0"
- 
+
   flask-app-2:
-    image: arunkumar2202/devops-flask-app:${APP2_IMAGE_TAG:-latest}
+    image: charles2875/azure:latest
     container_name: flask-app-2
     restart: always
     ports:
@@ -19,8 +18,3 @@ services:
     environment:
       INSTANCE_NAME: flask-app-2
       APP_VERSION: "1.0"
-
-
-
-
-

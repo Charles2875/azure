@@ -9,25 +9,8 @@ app = Flask(__name__)
 INSTANCE = os.environ.get("INSTANCE_NAME", "flask-app")
 VERSION  = os.environ.get("APP_VERSION", "1.0")
 
-# --- Logic from code1.py ---
-def add(a, b):
-    return a + b
 
-def subtract(a, b):
-    return a - b
 
-# --- Logic from helpers2.py ---
-def getData():
-    data = ["apple", "banana", "cherry"]
-    return data[random.randint(0, len(data) - 1)]
-
-def getData2():
-    data = ["dog", "cat", "mouse"]
-    return data[random.randint(0, len(data) - 1)]
-
-def getData3():
-    data = ["red", "green", "blue"]
-    return data[random.randint(0, len(data) - 1)]
 
 # --- Routes ---
 
@@ -39,7 +22,7 @@ def home():
     <h1>Docker Compose Lab</h1>
 
     <h3>Student Information</h3>
-    <p><b>Name:</b> Arun Kumar</p>
+    <p><b>Name:</b> arunkumar </p>
     <p><b>Class:</b> DevOps</p>
 
     <h3>System Information</h3>
@@ -52,9 +35,7 @@ def home():
 
     <h3>Available Endpoints</h3>
     <ul>
-        <li><a href="/hello/Arun">Hello Endpoint</a></li>
-        <li><a href="/add/5/3">Add Numbers</a></li>
-        <li><a href="/data">Random Data</a></li>
+        <li><a href="/hello/Charles"> Endpoint</a></li>
         <li><a href="/mysql-time">MySQL Time</a></li>
         <li><a href="/version">Version</a></li>
     </ul>
@@ -64,17 +45,9 @@ def home():
 def hello(name):
     return jsonify(message=f"Hello, {name}!", data=getData())
 
-@app.route("/add/<int:a>/<int:b>")
-def add_route(a, b):
-    return jsonify(result=add(a, b))
 
-@app.route("/data")
-def data_route():
-    return jsonify(
-        fruit=getData(),
-        animal=getData2(),
-        color=getData3()
-    )
+
+
 
 # --- MySQL Time Endpoint ---
 @app.route("/mysql-time")
