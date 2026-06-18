@@ -34,7 +34,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.AZURE_VM_IP }}
-          username: charles   # or azureuser if you prefer
+          username: azureuser   # or azureuser if you prefer
           key: ${{ secrets.AZURE_SSH_KEY }}
           script: |
             cd ~/azure
